@@ -1,0 +1,6 @@
+{
+  "name": "Matos & Co.",
+  "description": "Agência de marketing de performance e tecnologia em Curitiba.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

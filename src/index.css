@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Montserrat", sans-serif;
+  --color-navy: #0A1A2F;
+  --color-navy-dark: #06121F;
+  --color-gold: #C8A058;
+  --color-gold-light: #D8B978;
+  --color-cream: #F3ECDD;
+  --color-muted-text: #9A9A92;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #06121F;
+}
+::-webkit-scrollbar-thumb {
+  background: #C8A058;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D8B978;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-navy);
+  color: #FFFFFF;
+}
+
+/* Ampersand styling for beautiful Cormorant Garamond italic form */
+.amp {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+}
