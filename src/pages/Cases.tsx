@@ -10,9 +10,9 @@ export default function Cases() {
       
       {/* Page Header */}
       <div className="text-center mb-16 flex flex-col items-center">
-        <span className="text-[10px] font-semibold tracking-[0.25em] text-gold uppercase mb-3 block">PORTFÓLIO & CASES</span>
+        <span className="text-[10px] font-semibold tracking-[0.25em] text-gold uppercase mb-3 block">PORTFÓLIO <span className="amp">&amp;</span> CASES</span>
         <h1 className="font-serif text-3xl md:text-5xl font-medium tracking-tight mb-4 text-white">
-          Clientes Atendidos &amp; Estruturações
+          Clientes Atendidos <span className="amp">&amp;</span> Estruturações
         </h1>
         <div className="w-16 h-[1.5px] bg-gold opacity-50 my-4"></div>
         <p className="font-sans text-xs sm:text-sm text-muted-text max-w-xl leading-relaxed font-light">
@@ -46,7 +46,7 @@ export default function Cases() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left max-w-lg mx-auto border-t border-white/5 pt-8 w-full relative z-10">
           <div className="flex items-start gap-2.5">
             <CheckCircle className="w-4 h-4 text-gold shrink-0 mt-0.5" />
-            <span className="text-[11px] text-muted-text font-normal">Identidades Visuais &amp; Feeds</span>
+            <span className="text-[11px] text-muted-text font-normal">Identidades Visuais <span className="amp">&amp;</span> Feeds</span>
           </div>
           <div className="flex items-start gap-2.5">
             <CheckCircle className="w-4 h-4 text-gold shrink-0 mt-0.5" />

@@ -108,10 +108,10 @@ export default function Footer({ setCurrentPage }: FooterProps) {
         {/* Golden fine line spacer */}
         <div className="border-t border-gold/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <p className="text-[10px] font-medium tracking-widest text-muted-text uppercase">
-            © 2026 Matos <span className="font-sans font-light text-[11px] text-gold-light">&amp;</span> Co. — Todos os direitos reservados.
+            © 2026 Matos <span className="amp text-gold-light">&amp;</span> Co. — Todos os direitos reservados.
           </p>
           <div className="flex gap-6">
-            <span className="text-[10px] font-semibold text-gold tracking-widest uppercase">Performance <span className="font-sans font-light normal-case text-[9px] text-gold-light">&amp;</span> Tecnologia</span>
+            <span className="text-[10px] font-semibold text-gold tracking-widest uppercase">Performance <span className="amp normal-case text-gold-light">&amp;</span> Tecnologia</span>
           </div>
         </div>
       </div>

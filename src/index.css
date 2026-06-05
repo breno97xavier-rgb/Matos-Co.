@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Antic+Didone&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -38,9 +38,7 @@ body {
   color: #FFFFFF;
 }
 
-/* Ampersand styling for beautiful Cormorant Garamond italic form */
+/* Ampersand styling using Antic Didone to match the premium logo design precisely */
 .amp {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 500;
+  font-family: 'Antic Didone', serif;
 }

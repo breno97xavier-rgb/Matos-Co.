@@ -108,7 +108,7 @@ export default function Contact() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="font-sans text-xs sm:text-sm md:text-base text-muted-text max-w-2xl mx-auto leading-relaxed"
           >
-            Conte sobre o seu negócio e descubra como a Matos <span className="font-sans font-light text-gold-light">&amp;</span> Co. pode ajudar na estruturação, organização e posicionamento digital da sua empresa.
+            Conte sobre o seu negócio e descubra como a Matos <span className="amp text-gold-light">&amp;</span> Co. pode ajudar na estruturação, organização e posicionamento digital da sua empresa.
           </motion.p>
         </div>
       </section>

@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Award, Compass, Heart, BarChart3, Eye, ShieldCheck } from 'lucide-react';
 import SectionDivider from '../components/SectionDivider';
+import Logo from '../components/Logo';
 
 export default function About() {
   const whatsappUrl = "https://wa.me/5541988595077?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Matos%20%26%20Co.";
@@ -12,10 +13,19 @@ export default function About() {
       {/* SECTION 1: HERO ABOUT (Fundo Azul-Marinho) */}
       <section id="about-hero" className="bg-navy text-white pt-36 pb-20 px-6 md:px-12 relative">
         <div className="absolute inset-x-0 bottom-0 top-0 bg-[radial-gradient(circle_at_70%_50%,rgba(200,160,88,0.03),transparent)] pointer-events-none" />
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+        <div className="max-w-4xl mx-auto text-center relative z-10 flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="mb-8"
+          >
+            <Logo layout="vertical" size="lg" />
+          </motion.div>
           <motion.p 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             className="text-[10px] md:text-xs font-semibold tracking-[0.3em] text-gold uppercase mb-5"
           >
             A ESSÊNCIA DA AGÊNCIA
@@ -23,16 +33,16 @@ export default function About() {
           <motion.h1 
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             className="font-serif text-3xl sm:text-5xl md:text-6xl font-medium tracking-tight mb-6"
           >
-            Sobre a Matos <span className="font-sans font-light text-gold-light">&amp;</span> Co.
+            Sobre a Matos <span className="amp text-gold-light">&amp;</span> Co.
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="font-sans text-xs sm:text-sm md:text-base text-muted-text max-w-2xl mx-auto leading-relaxed"
+            transition={{ duration: 0.7, delay: 0.45 }}
+            className="font-sans text-xs sm:text-sm md:text-base text-muted-text max-w-2xl mx-auto leading-relaxed font-light"
           >
             Estrutura e crescimento digital a serviço do seu negócio.
           </motion.p>

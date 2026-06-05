@@ -64,7 +64,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-[10px] md:text-xs font-semibold tracking-[0.18em] text-gold uppercase mb-5"
             >
-              ESTRATÉGIA <span className="font-sans font-light text-gold-light lowercase text-xs">&amp;</span> ESTRUTURA
+              ESTRATÉGIA <span className="amp text-gold-light lowercase text-xs">&amp;</span> ESTRUTURA
             </motion.p>
 
             <motion.h1 
@@ -157,7 +157,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
                 <div className="w-9 h-9 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-4 group-hover:bg-gold group-hover:text-navy transition-all duration-300">
                   <Layout className="w-4.5 h-4.5" />
                 </div>
-                <h3 className="font-serif text-lg font-medium text-white mb-2 tracking-wide">Sites <span className="font-sans font-light text-gold-light">&amp;</span> LPs</h3>
+                <h3 className="font-serif text-lg font-medium text-white mb-2 tracking-wide">Sites <span className="amp text-gold-light">&amp;</span> LPs</h3>
                 <p className="font-sans text-[11px] text-muted-text leading-relaxed">
                   Páginas profissionais, rápidas e memoráveis, projetadas para passar a máxima credibilidade.
                 </p>
@@ -171,7 +171,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
                 <div className="w-9 h-9 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-4 group-hover:bg-gold group-hover:text-navy transition-all duration-300">
                   <Sparkles className="w-4.5 h-4.5" />
                 </div>
-                <h3 className="font-serif text-lg font-medium text-white mb-2 tracking-wide">Conteúdo <span className="font-sans font-light text-gold-light">&amp;</span> Redes</h3>
+                <h3 className="font-serif text-lg font-medium text-white mb-2 tracking-wide">Conteúdo <span className="amp text-gold-light">&amp;</span> Redes</h3>
                 <p className="font-sans text-[11px] text-muted-text leading-relaxed">
                   Criação e organização de postagens elegantes que traduzem o valor e a autoridade da sua marca.
                 </p>
@@ -185,7 +185,7 @@ export default function Home({ setCurrentPage }: HomeProps) {
                 <div className="w-9 h-9 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-4 group-hover:bg-gold group-hover:text-navy transition-all duration-300">
                   <Cpu className="w-4.5 h-4.5" />
                 </div>
-                <h3 className="font-serif text-lg font-medium text-white mb-2 tracking-wide">Google Meu Negócio <span className="font-sans font-light text-gold-light">&amp;</span> Portfólios</h3>
+                <h3 className="font-serif text-lg font-medium text-white mb-2 tracking-wide">Google Meu Negócio <span className="amp text-gold-light">&amp;</span> Portfólios</h3>
                 <p className="font-sans text-[11px] text-muted-text leading-relaxed">
                   Sua empresa localizada e bem posicionada no Google Maps, junto a portfólios digitais para expor seu trabalho.
                 </p>
@@ -279,10 +279,10 @@ export default function Home({ setCurrentPage }: HomeProps) {
             >
               <div className="absolute inset-0 bg-gold/[0.01] group-hover:bg-gold/[0.03] transition-colors pointer-events-none" />
               
-              <span className="text-[10px] uppercase font-bold tracking-widest text-gold mb-3 block">Cases &amp; Portfólio</span>
+              <span className="text-[10px] uppercase font-bold tracking-widest text-gold mb-3 block">Cases <span className="amp">&amp;</span> Portfólio</span>
               
               <h3 className="font-serif text-2xl font-medium text-navy mb-4 tracking-wide">
-                Nossos Clientes Atendidos <span className="font-sans font-light">&amp;</span> Estruturações
+                Nossos Clientes Atendidos <span className="amp">&amp;</span> Estruturações
               </h3>
               
               <p className="font-sans text-xs sm:text-sm text-navy/70 leading-relaxed max-w-lg mb-6 font-light">
