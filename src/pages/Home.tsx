@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { 
-  ArrowRight, 
   Target, 
   Layout, 
   Sparkles, 
@@ -23,7 +22,19 @@ export default function Home({ setCurrentPage }: HomeProps) {
 
   const handleNav = (id: PageId) => {
     setCurrentPage(id);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const element = document.getElementById(`${id}-section`);
+    if (element) {
+      const offset = 80; // height of fixed header
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   };
 
   // Stagger configurations
@@ -51,8 +62,13 @@ export default function Home({ setCurrentPage }: HomeProps) {
         {/* SECTION 1: HERO (Left 55% Column on Desktop) */}
         <section 
           id="hero-section" 
-          className="relative text-white pt-24 pb-16 lg:pt-36 lg:pb-24 px-6 md:px-12 flex flex-col justify-center lg:w-[55%] lg:border-r lg:border-white/10 shrink-0 select-none"
+          className="relative text-white pt-28 pb-20 lg:pt-36 lg:pb-28 px-6 md:px-12 flex flex-col justify-center lg:w-[55%] lg:border-r lg:border-white/10 shrink-0 select-none overflow-hidden"
         >
+          {/* Real Background Image on the Hero with low opacity for atmosphere while maintaining premium text contrast */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.08]" 
+            style={{ backgroundImage: `url('https://i.ibb.co/B2wv7nDv/pexels-kindelmedia-7688360.jpg')` }}
+          />
           {/* Abstract classy graphic backgrounds */}
           <div className="absolute inset-x-0 bottom-0 top-0 bg-[radial-gradient(circle_at_70%_50%,rgba(200,160,88,0.03),transparent)] pointer-events-none" />
           <div className="absolute top-1/4 right-10 w-96 h-96 bg-gold/5 rounded-full blur-3xl pointer-events-none" />
@@ -62,27 +78,27 @@ export default function Home({ setCurrentPage }: HomeProps) {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-[10px] md:text-xs font-semibold tracking-[0.18em] text-gold uppercase mb-5"
+              className="text-xs md:text-sm font-semibold tracking-[0.18em] text-gold uppercase mb-5"
             >
-              ESTRATÉGIA <span className="amp text-gold-light lowercase text-xs">&amp;</span> ESTRUTURA
+              ESTRATÉGIA <span className="amp text-gold-light lowercase text-sm">&amp;</span> ESTRUTURA
             </motion.p>
 
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
-              className="font-serif text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1] text-white mb-6"
+              className="font-serif text-4xl sm:text-5xl lg:text-6.5xl font-medium tracking-tight leading-[1.15] text-white mb-6"
             >
-              Seu negócio estruturado e posicionado para crescer<span className="text-gold">.</span>
+              Seu negócio estruturado e posicionado para crescer<span className="text-gold shadow-sm">.</span>
             </motion.h1>
 
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-              className="font-sans text-xs sm:text-sm md:text-base text-muted-text leading-relaxed mb-8 max-w-md font-light"
+              className="font-sans text-base sm:text-lg md:text-xl text-muted-text/90 leading-relaxed mb-8 max-w-lg font-light"
             >
-              Marketing de performance, conteúdo estratégico e tecnologia para estruturar e fortalecer a presença digital do seu negócio.
+              Marketing de performance, conteúdo estratégico e tecnologia com leitura ultra-clara para estruturar e fortalecer a presença digital do seu negócio.
             </motion.p>
 
             <motion.div 
@@ -96,14 +112,14 @@ export default function Home({ setCurrentPage }: HomeProps) {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-[0.1em] text-navy bg-gold hover:bg-gold-light transition-all duration-300 hover:shadow-xl hover:shadow-gold/15 transform hover:-translate-y-0.5"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-full text-sm font-semibold uppercase tracking-[0.1em] text-navy bg-gold hover:bg-gold-light transition-all duration-300 hover:shadow-xl hover:shadow-gold/15 transform hover:-translate-y-0.5"
               >
                 Fale com a gente
               </a>
               <button
                 id="hero-secondary-cta"
                 onClick={() => handleNav('services')}
-                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-[0.1em] text-gold border border-gold hover:bg-gold/10 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-full text-sm font-semibold uppercase tracking-[0.1em] text-gold border border-gold hover:bg-gold/10 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
               >
                 Conheça os serviços
               </button>
@@ -111,136 +127,85 @@ export default function Home({ setCurrentPage }: HomeProps) {
           </div>
         </section>
 
-        {/* SECTION 3: SERVIÇOS PREVIEW (Right 45% Column on Desktop) */}
+        {/* SECTION 3: ESTÉTICA IMAGEM DE PRODUÇÃO (Right 45% Column on Desktop - Replaces Services Preview) */}
         <section 
-          id="services-preview-section"
-          className="bg-navy-dark text-white pt-16 pb-20 lg:pt-36 lg:pb-24 px-6 md:px-12 flex flex-col justify-center lg:w-[45%] shrink-0"
+          id="hero-media-showcase"
+          className="relative lg:w-[45%] shrink-0 min-h-[450px] lg:min-h-0 border-t lg:border-t-0 lg:border-l border-white/10 p-6 md:p-12 flex flex-col justify-end overflow-hidden group select-none"
         >
-          <div className="max-w-xl mx-auto lg:mx-0 lg:mr-auto lg:ml-10">
-            
-            <div className="text-left mb-10">
-              <span className="text-[10px] font-semibold tracking-[0.18em] text-gold uppercase mb-2 block">O QUE FAZEMOS</span>
-              <h2 className="font-serif text-2xl sm:text-3xl font-medium tracking-tight mb-3">
-                Estruturação e Presença Digital
-              </h2>
-              <div className="w-16 h-[1px] bg-gold opacity-40 mt-3 mb-6"></div>
-            </div>
+          {/* Production Background Image with rich zoom transitions */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 group-hover:scale-105"
+            style={{ backgroundImage: `url('https://i.ibb.co/ZzmLL9jV/pexels-a-darmel-7710218.jpg')` }}
+          />
+          {/* Multilayered rich dark masterly gradient overlays */}
+          <div className="absolute inset-0 bg-gradient-to-t from-navy-dark via-navy/50 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-[#020b16]/20 group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />
+          
+          {/* Golden luxury thin border outline frame */}
+          <div className="absolute inset-4 md:inset-6 border border-gold/25 pointer-events-none z-10 transition-all duration-500 group-hover:border-gold/45" />
 
-            {/* Grid layout cards with refined geometric aesthetic */}
-            <motion.div 
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: '-50px' }}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8"
+          {/* Floating Premium glassmorphic showcase card */}
+          <div className="relative z-20 bg-navy-dark/95 backdrop-blur-md border border-gold/25 p-6 md:p-8 rounded-lg shadow-2xl max-w-sm ml-auto mr-auto lg:mr-0 lg:ml-auto transition-all duration-300 transform group-hover:border-gold/50">
+            <span className="text-[9px] md:text-[10px] font-bold tracking-[0.25em] text-gold uppercase mb-2 block animate-pulse">
+              Presença de Destaque
+            </span>
+            <h3 className="font-serif text-xl sm:text-2xl font-medium text-white mb-3 tracking-wide">
+              Estética &amp; Performance
+            </h3>
+            <div className="w-12 h-[1px] bg-gold opacity-50 mb-3" />
+            <p className="font-sans text-sm sm:text-base text-muted-text/95 leading-relaxed font-light mb-4 text-left">
+              Uma presença digital bem estruturada atrai os clientes qualificados que seu negócio merece, eliminando objeções e acelerando o fechamento de projetos.
+            </p>
+            <button
+              onClick={() => handleNav('services')}
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-gold hover:text-gold-light uppercase tracking-wider transition-colors group/btn cursor-pointer"
             >
-              
-              {/* Card 1: Tráfego Pago */}
-              <motion.div 
-                variants={itemVariants}
-                className="bg-white/[0.03] border border-gold/20 p-5 rounded-lg hover:border-gold/50 transition-all duration-300 group"
-              >
-                <div className="w-9 h-9 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-4 group-hover:bg-gold group-hover:text-navy transition-all duration-300">
-                  <Target className="w-4.5 h-4.5" />
-                </div>
-                <h3 className="font-serif text-lg font-medium text-white mb-2 tracking-wide">Tráfego Pago (Meta Ads)</h3>
-                <p className="font-sans text-[11px] text-muted-text leading-relaxed">
-                  Campanhas estruturadas no Instagram e Facebook com foco em atração consciente de clientes qualificados.
-                </p>
-              </motion.div>
-
-              {/* Card 2: Sites & Landing Pages */}
-              <motion.div 
-                variants={itemVariants}
-                className="bg-white/[0.03] border border-gold/20 p-5 rounded-lg hover:border-gold/50 transition-all duration-300 group"
-              >
-                <div className="w-9 h-9 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-4 group-hover:bg-gold group-hover:text-navy transition-all duration-300">
-                  <Layout className="w-4.5 h-4.5" />
-                </div>
-                <h3 className="font-serif text-lg font-medium text-white mb-2 tracking-wide">Sites <span className="amp text-gold-light">&amp;</span> LPs</h3>
-                <p className="font-sans text-[11px] text-muted-text leading-relaxed">
-                  Páginas profissionais, rápidas e memoráveis, projetadas para passar a máxima credibilidade.
-                </p>
-              </motion.div>
-
-              {/* Card 3: Conteúdo & Social */}
-              <motion.div 
-                variants={itemVariants}
-                className="bg-white/[0.03] border border-gold/20 p-5 rounded-lg hover:border-gold/50 transition-all duration-300 group"
-              >
-                <div className="w-9 h-9 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-4 group-hover:bg-gold group-hover:text-navy transition-all duration-300">
-                  <Sparkles className="w-4.5 h-4.5" />
-                </div>
-                <h3 className="font-serif text-lg font-medium text-white mb-2 tracking-wide">Conteúdo <span className="amp text-gold-light">&amp;</span> Redes</h3>
-                <p className="font-sans text-[11px] text-muted-text leading-relaxed">
-                  Criação e organização de postagens elegantes que traduzem o valor e a autoridade da sua marca.
-                </p>
-              </motion.div>
-
-              {/* Card 4: Google Meu Negócio & Portfólios */}
-              <motion.div 
-                variants={itemVariants}
-                className="bg-white/[0.03] border border-gold/20 p-5 rounded-lg hover:border-gold/50 transition-all duration-300 group"
-              >
-                <div className="w-9 h-9 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-4 group-hover:bg-gold group-hover:text-navy transition-all duration-300">
-                  <Cpu className="w-4.5 h-4.5" />
-                </div>
-                <h3 className="font-serif text-lg font-medium text-white mb-2 tracking-wide">Google Meu Negócio <span className="amp text-gold-light">&amp;</span> Portfólios</h3>
-                <p className="font-sans text-[11px] text-muted-text leading-relaxed">
-                  Sua empresa localizada e bem posicionada no Google Maps, junto a portfólios digitais para expor seu trabalho.
-                </p>
-              </motion.div>
-
-            </motion.div>
-
-            {/* CTA Link to all services */}
-            <div className="text-left">
-              <button
-                id="services-all-cta"
-                onClick={() => handleNav('services')}
-                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-gold hover:text-gold-light transition-colors cursor-pointer group"
-              >
-                <span>Ver todos os serviços</span>
-                <span className="transform group-hover:translate-x-1.5 transition-transform text-lg inline-block leading-none">→</span>
-              </button>
-            </div>
-
+              <span>Conhecer Estruturação</span>
+              <span className="transform group-hover/btn:translate-x-1.5 transition-transform select-none">→</span>
+            </button>
           </div>
         </section>
 
       </div>
 
       {/* SECTION 2: QUEM SOMOS (Fundo Creme) */}
-      <section 
-        id="about-summary-section"
-        className="bg-cream text-navy py-24 px-6 md:px-12 relative"
-      >
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-          
-          <div className="md:col-span-5 flex flex-col items-start">
-            <span className="text-[10px] font-semibold tracking-[0.25em] text-gold uppercase mb-3">QUEM SOMOS</span>
-            <h2 className="font-serif text-3xl md:text-4xl font-semibold leading-tight mb-4 text-navy">
-              Uma agência de marketing de performance, tecnologia e estruturação.
-            </h2>
-            <div className="w-12 h-[2px] bg-gold mt-2"></div>
-          </div>
-
-          <div className="md:col-span-7 flex flex-col gap-6">
-            <p className="font-sans text-sm md:text-base leading-relaxed text-navy/80">
-              Nascemos para alavancar, estruturar e fortalecer a presença digital do seu negócio através de anúncios refinados, conteúdo estratégico e tecnologia. Acreditamos que o crescimento de vendas saudável é consequência direta de uma estrutura organizada e de um posicionamento forte no mercado.
-            </p>
-            <div>
-              <button
-                id="about-summary-link"
-                onClick={() => handleNav('about')}
-                className="inline-flex items-center gap-2 group text-xs font-bold uppercase tracking-[0.15em] text-gold hover:text-gold-light transition-colors cursor-pointer"
-              >
-                <span>Saiba mais sobre nós</span>
-                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
-              </button>
+      <section id="about-block-1" className="bg-cream text-navy py-24 px-6 md:px-12 relative border-t border-gold/15">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            {/* Left Column: Descriptive Text Content */}
+            <div className="lg:col-span-6 flex flex-col items-start">
+              <span className="text-xs font-bold tracking-[0.25em] text-gold uppercase mb-3 block">QUEM SOMOS</span>
+              <h2 className="font-serif text-3xl sm:text-4.5xl font-semibold mb-6 text-navy">
+                Sobre a Agência
+              </h2>
+              <div className="w-12 h-[2px] bg-gold mb-8"></div>
+              <p className="font-sans text-base sm:text-lg md:text-xl leading-relaxed text-navy/90 font-light">
+                A Matos &amp; Co. é uma agência de marketing de performance, tecnologia e estruturação estratégica sediada em Curitiba, atendendo parceiros em todo o território nacional. Nascemos da convicção de que o marketing sério deve ser medido em resultados reais e duradouros, não em métricas de vaidade. Unimos planejamento estratégico de posicionamento, design de altíssimo nível, tráfego pago de alta precisão, conteúdo especializado e tecnologia avançada em um único ecossistema, garantindo que sua marca se consolide e seu negócio cresça de forma altamente consistente, legível e mensurável.
+              </p>
             </div>
-          </div>
 
+            {/* Right Column: Illustrative Premium Image with Offset Gold Frames */}
+            <div className="lg:col-span-6 relative group h-[350px] sm:h-[450px] md:h-[520px] lg:h-[480px] xl:h-[520px] w-full flex items-center justify-center">
+              {/* Outer Elegant Offset gold border accent */}
+              <div className="absolute top-4 left-4 right-4 bottom-4 border-2 border-gold/40 rounded-2xl translate-x-4 -translate-y-4 transition-transform duration-500 group-hover:translate-x-2 group-hover:-translate-y-2 pointer-events-none" />
+              {/* Inner ambient glow background */}
+              <div className="absolute top-4 left-4 right-4 bottom-4 bg-navy-dark/5 rounded-2xl translate-x-2 -translate-y-2 pointer-events-none" />
+              
+              <div className="relative w-full h-full rounded-2xl overflow-hidden border border-gold/30 shadow-[0_25px_60px_rgba(0,0,0,0.22)] bg-navy/5">
+                <img 
+                  src="https://i.ibb.co/7cHhqLj/pexels-fauxels-3184360.jpg" 
+                  alt="Equipe Matos & Co planejando estratégia de performance" 
+                  className="w-full h-full object-cover select-none transform hover:scale-[1.03] transition-transform duration-700"
+                  referrerPolicy="no-referrer"
+                />
+                
+                {/* Multi-layered visual depth shadow edge guard */}
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/15 via-transparent to-transparent pointer-events-none mix-blend-multiply" />
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 
@@ -251,80 +216,24 @@ export default function Home({ setCurrentPage }: HomeProps) {
       >
         <div className="max-w-6xl mx-auto">
           
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
             
             <div className="md:col-span-6">
-              <span className="text-[10px] font-semibold tracking-[0.25em] text-gold uppercase mb-3 block">NOSSO DIFERENCIAL</span>
-              <h2 className="font-serif text-3xl md:text-4xl font-semibold leading-tight text-navy mb-4 max-w-lg">
+              <span className="text-xs font-bold tracking-[0.25em] text-gold uppercase mb-3 block">NOSSO DIFERENCIAL</span>
+              <h2 className="font-serif text-3xl md:text-4.5xl font-semibold leading-tight text-navy mb-4 max-w-lg">
                 Estrutura sólida para colher novos resultados.
               </h2>
               <div className="w-16 h-[1.5px] bg-gold mt-2"></div>
             </div>
 
             <div className="md:col-span-6">
-              <p className="font-sans text-sm md:text-base leading-relaxed text-navy/80">
-                Fugimos do amadorismo. Unimos organização digital, posicionamento de autoridade e tráfego pago de forma consistente. O resultado? Seu negócio se consolida e as vendas crescem naturalmente.
+              <p className="font-sans text-base sm:text-lg md:text-xl leading-relaxed text-navy/90 font-light">
+                Fugimos do amadorismo. Unimos organização digital, posicionamento de autoridade e tráfego pago de forma consistente e com visualização ultra-legível. O resultado? Seu negócio se consolida e as vendas crescem de forma sólida e natural.
               </p>
             </div>
 
           </div>
 
-          {/* Elegant Single Card for Clientes Atendidos that links to the Cases page */}
-          <div className="pt-8 border-t border-gold/20 flex justify-center">
-            <motion.div 
-              whileHover={{ y: -5 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => handleNav('cases')}
-              className="w-full max-w-2xl bg-[#0A1A2F]/5 border border-gold/30 hover:border-gold p-8 rounded-xl text-center flex flex-col items-center justify-between cursor-pointer transition-all duration-300 shadow-sm relative group overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gold/[0.01] group-hover:bg-gold/[0.03] transition-colors pointer-events-none" />
-              
-              <span className="text-[10px] uppercase font-bold tracking-widest text-gold mb-3 block">Cases <span className="amp">&amp;</span> Portfólio</span>
-              
-              <h3 className="font-serif text-2xl font-medium text-navy mb-4 tracking-wide">
-                Nossos Clientes Atendidos <span className="amp">&amp;</span> Estruturações
-              </h3>
-              
-              <p className="font-sans text-xs sm:text-sm text-navy/70 leading-relaxed max-w-lg mb-6 font-light">
-                Clique aqui para acessar nossa nova página de portfólio. Lá você poderá visualizar exemplos de criativos de anúncios, de feed e da organização de presença local que desenvolvemos.
-              </p>
-              
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gold group-hover:text-gold-light mt-2 transition-colors">
-                <span>Explorar Galeria de Cases</span>
-                <span className="transform group-hover:translate-x-1 transition-transform text-base select-none">→</span>
-              </div>
-            </motion.div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* SECTION 5: CTA FINAL (Fundo Azul-Marinho) */}
-      <section 
-        id="cta-final-section"
-        className="bg-navy text-white py-24 px-6 md:px-12 relative overflow-hidden"
-      >
-        {/* Glow detail */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(200,160,88,0.06),transparent_60%)] pointer-events-none" />
-        
-        <div className="max-w-3xl mx-auto text-center relative z-10 flex flex-col items-center">
-          <span className="text-[10px] font-semibold tracking-[0.3em] text-gold uppercase mb-4 font-semibold">FAÇA PARTE DO MÉTODO</span>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight leading-tight mb-6">
-            Seu negócio com posicionamento de destaque.
-          </h2>
-          <p className="font-sans text-xs sm:text-sm text-muted-text max-w-lg leading-relaxed mb-10">
-            Fale conosco hoje mesmo. Vamos estruturar, organizar e consolidar a presença digital da sua empresa.
-          </p>
-          
-          <a
-            id="cta-final-whatsapp-btn"
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-xs font-semibold uppercase tracking-[0.15em] text-navy bg-gold hover:bg-gold-light transition-all duration-300 hover:shadow-2xl hover:shadow-gold/25 transform hover:-translate-y-0.5"
-          >
-            Falar no WhatsApp
-          </a>
         </div>
       </section>
 

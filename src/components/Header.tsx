@@ -28,8 +28,8 @@ export default function Header({ currentPage, setCurrentPage }: HeaderProps) {
 
   const menuItems: { id: PageId; label: string }[] = [
     { id: 'home', label: 'Home' },
-    { id: 'services', label: 'Serviços' },
     { id: 'about', label: 'Sobre' },
+    { id: 'services', label: 'Serviços' },
     { id: 'cases', label: 'Cases' },
     { id: 'contact', label: 'Contato' },
   ];
@@ -37,7 +37,24 @@ export default function Header({ currentPage, setCurrentPage }: HeaderProps) {
   const handleNav = (id: PageId) => {
     setCurrentPage(id);
     setIsOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Smoothly scroll to the corresponding section element with offset (preferring about-block-1 for 'Sobre' section as it is at the top)
+    const targetId = id === 'about' ? 'about-block-1' : `${id}-section`;
+    const sectionElement = document.getElementById(targetId);
+    if (sectionElement) {
+      const offset = 80; // height of the sticky header
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = sectionElement.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const whatsappUrl = "https://wa.me/5541988595077?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Matos%20%26%20Co.";
@@ -47,8 +64,8 @@ export default function Header({ currentPage, setCurrentPage }: HeaderProps) {
       id="main-header"
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-navy-dark/95 backdrop-blur-md py-4 shadow-lg border-b border-gold/10'
-          : 'bg-transparent py-6'
+          ? 'bg-navy-dark/95 backdrop-blur-md py-4 shadow-lg border-b border-gold/15'
+          : 'bg-gradient-to-b from-navy-dark/85 via-navy-dark/45 to-transparent py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
@@ -70,10 +87,12 @@ export default function Header({ currentPage, setCurrentPage }: HeaderProps) {
                 <button
                   id={`nav-item-${item.id}`}
                   onClick={() => handleNav(item.id)}
-                  className={`text-xs font-semibold uppercase tracking-[0.15em] transition-all duration-300 cursor-pointer ${
+                  className={`text-xs font-bold uppercase tracking-[0.18em] transition-all duration-300 cursor-pointer ${
                     currentPage === item.id
-                      ? 'text-gold-light font-bold'
-                      : 'text-muted-text hover:text-white'
+                      ? 'text-gold-light'
+                      : scrolled
+                        ? 'text-white/90 hover:text-gold-light'
+                        : 'text-white hover:text-gold-light [text-shadow:_0_1px_4px_rgba(0,0,0,0.5)]'
                   }`}
                 >
                   {item.label}
@@ -81,7 +100,7 @@ export default function Header({ currentPage, setCurrentPage }: HeaderProps) {
                 {currentPage === item.id && (
                   <motion.div
                     layoutId="activeIndicator"
-                    className="absolute -bottom-1.5 left-0 right-0 h-[1.5px] bg-gold-light"
+                    className="absolute -bottom-1.5 left-0 right-0 h-[1.5px] bg-gold"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -143,7 +162,7 @@ export default function Header({ currentPage, setCurrentPage }: HeaderProps) {
                       id={`mobile-nav-item-${item.id}`}
                       onClick={() => handleNav(item.id)}
                       className={`text-[13px] font-semibold uppercase tracking-[0.15em] w-full text-left py-1 cursor-pointer ${
-                        currentPage === item.id ? 'text-gold-light font-bold' : 'text-muted-text'
+                        currentPage === item.id ? 'text-gold-light font-bold' : 'text-white/90'
                       }`}
                     >
                       {item.label}

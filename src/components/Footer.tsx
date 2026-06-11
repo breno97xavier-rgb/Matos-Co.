@@ -10,11 +10,28 @@ interface FooterProps {
 export default function Footer({ setCurrentPage }: FooterProps) {
   const handleNav = (id: PageId) => {
     setCurrentPage(id);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Smoothly scroll to the corresponding section element with offset (preferring about-block-1 for 'Sobre' section as it is at the top)
+    const targetId = id === 'about' ? 'about-block-1' : `${id}-section`;
+    const sectionElement = document.getElementById(targetId);
+    if (sectionElement) {
+      const offset = 80; // height of the sticky header
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = sectionElement.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const whatsappUrl = "https://wa.me/5541988595077?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Matos%20%26%20Co.";
-  const instagramUrl = "https://instagram.com/b.matos.co";
+  const instagramUrl = "https://instagram.com/agencia.matos.co";
   const emailAddress = "b.matos.co@gmail.com";
 
   return (
@@ -34,7 +51,7 @@ export default function Footer({ setCurrentPage }: FooterProps) {
           <div className="md:col-span-3 flex flex-col gap-5">
             <h4 id="footer-nav-title" className="font-serif text-sm font-semibold tracking-wider text-gold-light uppercase">Navegação</h4>
             <ul className="flex flex-col gap-3">
-              {(['home', 'services', 'about', 'cases', 'contact'] as PageId[]).map((page) => {
+              {(['home', 'about', 'services', 'cases', 'contact'] as PageId[]).map((page) => {
                 const labels: Record<PageId, string> = {
                   home: 'Home',
                   services: 'Nossos Serviços',
@@ -83,7 +100,7 @@ export default function Footer({ setCurrentPage }: FooterProps) {
                   className="group inline-flex items-center gap-2.5 text-xs font-semibold text-muted-text hover:text-gold-light transition-colors uppercase tracking-[0.08em]"
                 >
                   <Instagram className="w-5 h-5 text-gold" />
-                  <span>@b.matos.co</span>
+                  <span>@agencia.matos.co</span>
                   <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
               </li>
