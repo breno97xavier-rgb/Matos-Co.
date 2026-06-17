@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { Mail, Instagram, MapPin, PhoneCall } from 'lucide-react';
 
 export default function Contact() {
@@ -52,11 +53,30 @@ export default function Contact() {
               <div className="absolute top-4 left-4 right-4 bottom-4 bg-[#0A1A2F]/80 rounded-2xl translate-x-2 -translate-y-2 border border-white/5 pointer-events-none" />
               
               <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-[0_30px_70px_rgba(0,0,0,0.45)] bg-navy-dark/40">
-                <img 
+                <motion.img 
                   src="https://i.ibb.co/cc5sPbsJ/pexels-mikael-blomkvist-6476245.jpg" 
                   alt="Conversa estratégica e alinhamento de negócio na Matos & Co." 
-                  className="w-full h-full object-cover select-none transform hover:scale-[1.03] transition-transform duration-700 pointer-events-none"
+                  className="w-full h-full object-cover select-none cursor-pointer"
                   referrerPolicy="no-referrer"
+                  initial={{ scale: 1.0, opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  animate={{
+                    scale: [1.0, 1.05, 1.0]
+                  }}
+                  transition={{
+                    opacity: { duration: 1.6, ease: "easeOut" },
+                    scale: {
+                      duration: 18,
+                      ease: "easeInOut",
+                      repeat: Infinity,
+                      repeatType: "mirror"
+                    }
+                  }}
+                  whileHover={{ 
+                    scale: 1.08,
+                    transition: { duration: 0.6, ease: "easeOut" }
+                  }}
                 />
                 
                 {/* Visual rich shading & brand-coloring overlay gradient */}

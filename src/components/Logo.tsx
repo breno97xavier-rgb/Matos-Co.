@@ -111,7 +111,7 @@ export default function Logo({
         
         {/* PERFORMANCE & TECNOLOGIA Subtext */}
         <div className={`font-sans uppercase ${s.subtextText} ${s.subtextTracking} font-semibold text-gold mt-1 leading-none`}>
-          PERFORMANCE <span className="font-light">&amp;</span> TECNOLOGIA
+          AGÊNCIA DE MARKETING
         </div>
       </div>
     );
@@ -134,7 +134,7 @@ export default function Logo({
         </div>
         {/* PERFORMANCE & TECNOLOGIA */}
         <div className={`font-sans uppercase ${s.subtextText} ${s.subtextTracking} font-semibold text-gold mt-0.5 leading-none`}>
-          PERFORMANCE <span className="font-light">&amp;</span> TECNOLOGIA
+          AGÊNCIA DE MARKETING
         </div>
       </div>
     </div>

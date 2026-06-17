@@ -146,11 +146,30 @@ export default function Services() {
 
                     {/* Main Image Wrapper */}
                     <div className={`relative w-full h-full rounded-2xl overflow-hidden border ${isLight ? 'border-gold/25' : 'border-gold-light/25'} shadow-[0_20px_50px_rgba(0,0,0,0.18)] bg-navy/5`}>
-                      <img 
+                      <motion.img 
                         src={service.image} 
                         alt={service.title} 
-                        className="w-full h-full object-cover select-none transform hover:scale-[1.03] transition-transform duration-700"
+                        className="w-full h-full object-cover select-none"
                         referrerPolicy="no-referrer"
+                        initial={{ scale: 1.0, opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        animate={{
+                          scale: [1.0, 1.06, 1.0]
+                        }}
+                        transition={{
+                          opacity: { duration: 1.5, ease: "easeOut" },
+                          scale: {
+                            duration: 16,
+                            ease: "easeInOut",
+                            repeat: Infinity,
+                            repeatType: "mirror"
+                          }
+                        }}
+                        whileHover={{ 
+                          scale: 1.09,
+                          transition: { duration: 0.6, ease: "easeOut" }
+                        }}
                       />
                       {/* Multi-layered dark blend overlay to fit typography */}
                       <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/10 via-transparent to-transparent pointer-events-none mix-blend-multiply" />

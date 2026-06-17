@@ -128,7 +128,7 @@ export default function Footer({ setCurrentPage }: FooterProps) {
             © 2026 Matos <span className="amp text-gold-light">&amp;</span> Co. — Todos os direitos reservados.
           </p>
           <div className="flex gap-6">
-            <span className="text-[10px] font-semibold text-gold tracking-widest uppercase">Performance <span className="amp normal-case text-gold-light">&amp;</span> Tecnologia</span>
+            <span className="text-[10px] font-semibold text-gold tracking-widest uppercase">Agência de Marketing</span>
           </div>
         </div>
       </div>

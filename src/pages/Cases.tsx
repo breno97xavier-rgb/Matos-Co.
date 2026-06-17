@@ -62,101 +62,107 @@ interface SocialCase {
 // Elegant Showcase component using static screenshots of real, high-quality work
 function SocialMediaShowcase({ sc }: { sc: SocialCase }) {
   return (
-    <div className="w-full bg-[#030d1b] border border-gold/15 rounded-xl overflow-hidden shadow-2xl relative transition-all duration-500 hover:border-gold/30">
+    <div className="w-full bg-[#030d1b] border border-white/10 rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 hover:border-gold/40 hover:scale-[1.01] hover:shadow-[0_25px_60px_rgba(200,160,88,0.12)] flex flex-col justify-between h-full relative group">
       
-      {/* Top Simulated App/Browser Header */}
-      <div className="bg-navy-light px-4 py-3 border-b border-white/5 flex items-center justify-between select-none">
-        {/* Circle controls */}
-        <div className="flex gap-1.5 shrink-0">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
-          <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
-          <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+      {/* Ambient glow spotlight behind active card */}
+      <div className="absolute -inset-1 bg-gradient-to-r from-gold/15 to-transparent rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      
+      <div className="relative z-10">
+        {/* Clean, authentic Instagram-style Header */}
+        <div className="p-4 bg-gradient-to-b from-[#06152a] to-[#030d1b] border-b border-white/5 flex items-center justify-between select-none">
+          <div className="flex items-center gap-3">
+            <div className="relative shrink-0">
+              <img 
+                src={sc.logoUrl} 
+                alt={sc.title} 
+                className="w-10 h-10 rounded-full object-cover border border-gold/30"
+                referrerPolicy="no-referrer"
+              />
+              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-gold rounded-full border border-[#030d1b] flex items-center justify-center text-[7.5px] text-[#030d1b] font-black">✓</span>
+            </div>
+            <div>
+              <div className="flex items-center gap-1">
+                <span className="font-serif font-bold text-sm text-white tracking-wide">@{sc.instagramHandle}</span>
+              </div>
+              <span className="text-[9px] sm:text-[10px] text-muted-text/85 uppercase tracking-widest font-mono block leading-none mt-0.5">{sc.categoryName}</span>
+            </div>
+          </div>
+
+          <div className="text-right">
+            <span className="text-xs sm:text-sm font-bold text-gold-light tracking-wide block leading-none">{sc.stats.followers}</span>
+            <span className="text-[8px] sm:text-[9px] text-muted-text/75 uppercase tracking-widest font-mono block leading-none mt-1">Seguidores</span>
+          </div>
         </div>
-        
-        {/* Instagram Handle & External Link */}
+
+        {/* Content Image Section with crisp render options */}
         <a 
           href={sc.url} 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="bg-navy px-3 py-1 rounded text-[10px] text-muted-text hover:text-gold transition-colors font-mono w-56 md:w-80 text-center truncate flex items-center justify-center gap-1.5 border border-white/5"
-          title="Clique para ir ao perfil oficial"
+          className="block relative aspect-square overflow-hidden bg-[#020b16] border-b border-white/5"
         >
-          <Instagram className="w-3.5 h-3.5 text-gold/80" />
-          <span>instagram.com/{sc.instagramHandle}</span>
-          <ExternalLink className="w-2.5 h-2.5 text-gold/50" />
+          <img 
+            src={sc.feedImageUrl} 
+            alt={sc.title} 
+            className="w-full h-full object-cover object-top select-none transition-transform duration-700 group-hover:scale-105"
+            style={{ imageRendering: 'auto' }}
+            referrerPolicy="no-referrer"
+          />
+          {/* Subtle lighting mask */}
+          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
+          
+          {/* Action indicator overlay */}
+          <div className="absolute inset-0 bg-navy/85 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
+            <div className="w-12 h-12 rounded-full bg-gold/15 flex items-center justify-center text-gold border border-gold/35 mb-3 transform scale-90 group-hover:scale-100 transition-transform duration-300">
+              <Instagram className="w-5 h-5 animate-pulse" />
+            </div>
+            <p className="font-serif text-lg font-medium text-white mb-1">Acessar Perfil de Elite</p>
+            <p className="font-mono text-[9px] uppercase text-gold tracking-widest font-bold">instagram.com/{sc.instagramHandle}</p>
+          </div>
         </a>
 
-        {/* Status Badge */}
-        <div className="bg-gold/10 text-gold border border-gold/20 rounded-full px-2 py-0.5 text-[8px] font-mono uppercase tracking-wider shrink-0 hidden sm:flex items-center gap-1">
-          <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-          <span>Case de Elite</span>
-        </div>
-      </div>
-
-      {/* Main Image container representing actual work */}
-      <a 
-        href={sc.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block relative aspect-square overflow-hidden bg-[#020b16] group/shot"
-        title="Clique para abrir o Instagram oficial"
-      >
-        <img 
-          src={sc.feedImageUrl} 
-          alt={`Visual Grid da ${sc.title}`}
-          className="w-full h-full object-cover object-top select-none transition-transform duration-700 group-hover/shot:scale-105"
-          referrerPolicy="no-referrer"
-        />
-
-        {/* Hover Highlight Layer */}
-        <div className="absolute inset-0 bg-[#020b16]/75 opacity-0 group-hover/shot:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
-          <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold border border-gold/30 mb-3 transform scale-90 group-hover/shot:scale-100 transition-transform duration-500">
-            <Instagram className="w-6 h-6" />
-          </div>
-          <p className="font-serif text-lg font-medium text-white mb-1">Acessar @{sc.instagramHandle}</p>
-          <p className="font-sans text-[10px] uppercase text-gold tracking-widest font-bold">Ver Conteúdo no Instagram</p>
-        </div>
-      </a>
-
-      {/* Minimalistic Instagram Footer Header bar inside card */}
-      <div className="p-4 bg-gradient-to-b from-[#040f20] to-[#020914] border-t border-white/5 text-white">
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex items-center gap-3 min-w-0">
-            <img 
-              src={sc.logoUrl} 
-              alt={`${sc.title} Logo`}
-              className="w-10 h-10 rounded-full object-cover border border-gold/20 shrink-0"
-              referrerPolicy="no-referrer"
-            />
-            <div className="min-w-0">
-              <div className="flex items-center gap-1">
-                <h4 className="font-serif font-semibold text-xs text-white truncate">@{sc.instagramHandle}</h4>
-                <span className="w-3.5 h-3.5 rounded-full bg-gold flex items-center justify-center text-[7px] text-navy font-bold shrink-0">✓</span>
-              </div>
-              <p className="font-sans text-[9px] text-muted-text truncate">{sc.categoryName}</p>
+        {/* Info Contents */}
+        <div className="p-6">
+          <div className="flex justify-between items-center gap-4 mb-3">
+            <span className="text-xs font-bold uppercase tracking-widest text-gold text-left shrink-0">
+              {sc.tag}
+            </span>
+            <div className="bg-gold/10 text-gold border border-gold/30 rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest shrink-0 font-mono">
+              {sc.metrics.value}
             </div>
           </div>
 
-          <div className="text-right shrink-0">
-            <span className="text-[10px] font-semibold text-gold-light block">{sc.stats.followers}</span>
-            <span className="text-[8px] text-muted-text uppercase tracking-wider block">Seguidores</span>
-          </div>
-        </div>
-
-        {/* Action button inside card device */}
-        <div className="mt-4">
-          <a 
-            href={sc.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full bg-[#051427] hover:bg-gold border border-gold/30 hover:border-gold hover:text-navy text-gold-light font-sans text-[9px] font-bold uppercase tracking-widest py-2.5 rounded-lg transition-all flex items-center justify-center gap-1.5"
-          >
-            <Instagram className="w-3.5 h-3.5" />
-            <span>Ver no Instagram</span>
-            <ExternalLink className="w-3 h-3 opacity-60" />
-          </a>
+          <p className="font-sans text-sm sm:text-base text-muted-text/95 leading-relaxed font-light">
+            {sc.description}
+          </p>
         </div>
       </div>
+
+      {/* Highlights & CTA area */}
+      <div className="px-6 pb-6 pt-4 border-t border-white/5 bg-navy-light/10 relative z-10 flex flex-col gap-4">
+        <div className="flex flex-wrap gap-1.5">
+          {sc.highlights.map(hl => (
+            <span 
+              key={hl} 
+              className="bg-[#051325] text-muted-text/95 text-[10px] font-medium px-2.5 py-1 border border-white/5 rounded-full uppercase tracking-wider font-mono"
+            >
+              {hl}
+            </span>
+          ))}
+        </div>
+
+        <a 
+          href={sc.url} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="w-full bg-[#051427] hover:bg-gold border border-gold/30 hover:border-gold hover:text-[#020b16] text-gold-light hover:shadow-lg hover:shadow-gold/10 font-sans text-xs font-bold uppercase tracking-widest py-3.5 rounded-lg transition-all flex items-center justify-center gap-2"
+        >
+          <Instagram className="w-4 h-4" />
+          <span>Ver no Instagram Oficial</span>
+          <ArrowUpRight className="w-4 h-4 opacity-75" />
+        </a>
+      </div>
+
     </div>
   );
 }
@@ -419,48 +425,47 @@ export default function Cases() {
                           href={p.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-full lg:w-[55%] shrink-0 block group/visual"
+                          className="w-full lg:w-[55%] shrink-0 block group/visual relative"
                         >
-                          <div className="bg-[#0b1d33] border border-gold/15 rounded-xl overflow-hidden shadow-2xl transition-all duration-500 group-hover/visual:border-gold/30 group-hover/visual:shadow-gold/5 relative">
-                            {/* Browser Top Tab Bar */}
-                            <div className="bg-navy-light px-4 py-3 border-b border-gold/10 flex items-center justify-between">
-                              {/* Dot controls */}
-                              <div className="flex gap-1.5">
-                                <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
-                                <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
-                                <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
-                              </div>
-                              
-                              {/* URL Bar */}
-                              <div className="bg-navy px-3 py-1 rounded text-xs text-muted-text/70 font-mono w-64 text-center truncate flex items-center justify-center gap-1.5 border border-white/5">
-                                <Globe className="w-3.5 h-3.5 text-gold/60" />
-                                <span>{p.displayUrl}</span>
-                              </div>
-                              
-                              {/* Direct action link indicator */}
-                              <div className="flex items-center gap-1 text-[11px] text-gold/70 font-mono uppercase tracking-wider group-hover/visual:text-gold transition-colors">
-                                <span>Acessar</span>
-                                <ExternalLink className="w-3 h-3" />
-                              </div>
+                          {/* Rich ambient gold spotlight blur glow on hover */}
+                          <div className="absolute -inset-1 bg-gradient-to-r from-gold/25 via-[#020b16]/10 to-gold/5 rounded-2xl blur-xl opacity-0 group-hover/visual:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                          
+                          <div className="relative bg-[#020b16] border border-white/10 rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 group-hover/visual:border-gold/40 group-hover/visual:shadow-[0_25px_60px_rgba(200,160,88,0.15)] overflow-hidden">
+                            
+                            {/* Floating Glassmorphic App Ribbon */}
+                            <div className="absolute top-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-[#030d1b]/80 backdrop-blur-md border border-gold/20 flex items-center gap-2 select-none">
+                              <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse" />
+                              <span className="font-mono text-[9px] sm:text-[10px] tracking-widest text-white uppercase font-bold">LIVE SITE</span>
+                              <span className="text-gold/40 font-mono text-[10px]">•</span>
+                              <span className="font-mono text-[9px] sm:text-[10px] text-gold/90 lowercase tracking-wide font-medium">{p.displayUrl}</span>
+                            </div>
+
+                            {/* Floating action indicator */}
+                            <div className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-[#030d1b]/80 backdrop-blur-md border border-gold/20 flex items-center justify-center text-gold opacity-0 group-hover/visual:opacity-100 transition-all duration-300 transform scale-75 group-hover/visual:scale-100">
+                              <ExternalLink className="w-3.5 h-3.5" />
                             </div>
 
                             {/* Static screenshot container (Pristine High Quality ratio, no blurred stretch) */}
-                            <div className="relative aspect-[16/10] overflow-hidden bg-[#030d1b]">
+                            <div className="relative aspect-[16/10] overflow-hidden bg-[#030d1b] border-b border-white/5">
                               {p.imageUrl ? (
                                 <img 
                                   src={p.imageUrl} 
                                   alt={p.title} 
-                                  className="w-full h-full object-cover object-top select-none transition-transform duration-700 group-hover/visual:scale-[1.03]"
+                                  className="w-full h-full object-cover object-top select-none transition-all duration-700 group-hover/visual:scale-105 group-hover/visual:brightness-105"
+                                  style={{ imageRendering: 'auto' }}
                                   referrerPolicy="no-referrer"
-                               />
+                                />
                               ) : (
                                 <div className="h-full flex items-center justify-center p-8 text-center text-muted-text font-serif text-lg">
                                   Carregando captura...
                                 </div>
                               )}
-                              {/* Fine radial overlay to match dark blue grading */}
-                              <div className="absolute inset-0 bg-gradient-to-t from-[#020b16]/25 to-transparent pointer-events-none" />
+                              {/* Deep elegant fade mask */}
+                              <div className="absolute inset-0 bg-gradient-to-t from-[#020b16]/40 via-transparent to-transparent pointer-events-none" />
                             </div>
+
+                            {/* Luxury bottom active track line */}
+                            <div className="absolute bottom-0 inset-x-0 h-[3px] bg-gradient-to-r from-gold/50 via-gold to-gold/50 transform scale-x-0 group-hover/visual:scale-x-100 transition-transform duration-500 origin-left" />
                           </div>
                         </a>
 
@@ -540,55 +545,8 @@ export default function Cases() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.6 }}
-                        className="bg-[#071627]/60 border border-gold/15 rounded-2xl overflow-hidden shadow-2xl flex flex-col justify-between group hover:border-gold/30 transition-all duration-500 hover:-translate-y-1 cursor-pointer"
                       >
-                        {/* Upper Section holding Customized Instagram live simulator */}
-                        <div>
-                          
-                          {/* Custom high fidelity social showcase */}
-                          <SocialMediaShowcase sc={sc} />
-
-                          {/* Info area layout below device frame */}
-                          <div className="p-6">
-                            <div className="flex justify-between items-start gap-4 mb-3">
-                              <span className="text-xs font-bold uppercase tracking-widest text-gold text-left shrink-0">
-                                {sc.tag}
-                              </span>
-                              <div className="bg-gold/10 text-gold border border-gold/30 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest shrink-0">
-                                {sc.metrics.value}
-                              </div>
-                            </div>
-
-                            <p className="font-sans text-base sm:text-lg text-muted-text/95 leading-relaxed font-light mb-4">
-                              {sc.description}
-                            </p>
-                          </div>
-                        </div>
-
-                        {/* Highlights as badges and action redirect */}
-                        <div className="px-6 pb-6 border-t border-white/5 pt-4 bg-navy-light/10">
-                          <div className="flex flex-wrap gap-1.5 mb-5">
-                            {sc.highlights.map(hl => (
-                              <span 
-                                key={hl} 
-                                className="bg-[#0b1d33]/60 text-muted-text text-[10px] font-medium px-2.5 py-1 border border-white/5 rounded uppercase tracking-wider"
-                              >
-                                {hl}
-                              </span>
-                            ))}
-                          </div>
-                          
-                          {/* Visit case link */}
-                          <a
-                            href={sc.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-gold hover:text-white transition-colors"
-                          >
-                            <span>Visitar Perfil no Instagram Oficial</span>
-                            <ArrowUpRight className="w-4 h-4 animate-pulse" />
-                          </a>
-                        </div>
+                        <SocialMediaShowcase sc={sc} />
                       </motion.div>
                     );
                   })}

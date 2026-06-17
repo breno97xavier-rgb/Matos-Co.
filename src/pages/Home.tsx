@@ -8,7 +8,9 @@ import {
   TrendingUp, 
   ShieldCheck, 
   Zap,
-  CheckCircle2
+  CheckCircle2,
+  BarChart3,
+  Eye
 } from 'lucide-react';
 import SectionDivider from '../components/SectionDivider';
 import { PageId } from '../types';
@@ -169,9 +171,9 @@ export default function Home({ setCurrentPage }: HomeProps) {
       </div>
 
       {/* SECTION 2: QUEM SOMOS (Fundo Creme) */}
-      <section id="about-block-1" className="bg-cream text-navy py-24 px-6 md:px-12 relative border-t border-gold/15">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <section id="about-block-1" className="bg-cream text-navy py-24 relative border-t border-gold/15">
+        <div className="max-w-6xl mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24">
             
             {/* Left Column: Descriptive Text Content */}
             <div className="lg:col-span-6 flex flex-col items-start">
@@ -193,11 +195,30 @@ export default function Home({ setCurrentPage }: HomeProps) {
               <div className="absolute top-4 left-4 right-4 bottom-4 bg-navy-dark/5 rounded-2xl translate-x-2 -translate-y-2 pointer-events-none" />
               
               <div className="relative w-full h-full rounded-2xl overflow-hidden border border-gold/30 shadow-[0_25px_60px_rgba(0,0,0,0.22)] bg-navy/5">
-                <img 
+                <motion.img 
                   src="https://i.ibb.co/7cHhqLj/pexels-fauxels-3184360.jpg" 
                   alt="Equipe Matos & Co planejando estratégia de performance" 
-                  className="w-full h-full object-cover select-none transform hover:scale-[1.03] transition-transform duration-700"
+                  className="w-full h-full object-cover select-none"
                   referrerPolicy="no-referrer"
+                  initial={{ scale: 1.0, opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  animate={{
+                    scale: [1.0, 1.05, 1.0]
+                  }}
+                  transition={{
+                    opacity: { duration: 1.6, ease: "easeOut" },
+                    scale: {
+                      duration: 18,
+                      ease: "easeInOut",
+                      repeat: Infinity,
+                      repeatType: "mirror"
+                    }
+                  }}
+                  whileHover={{ 
+                    scale: 1.08,
+                    transition: { duration: 0.6, ease: "easeOut" }
+                  }}
                 />
                 
                 {/* Multi-layered visual depth shadow edge guard */}
@@ -206,6 +227,92 @@ export default function Home({ setCurrentPage }: HomeProps) {
             </div>
 
           </div>
+
+          {/* SECTION 4: VALORES Title */}
+          <div className="text-center mb-16 flex flex-col items-center pt-8 border-t border-gold/15">
+            <span className="text-xs font-bold tracking-[0.25em] text-gold uppercase mb-3">CONVICÇÕES</span>
+            <h2 className="font-serif text-3xl sm:text-4.5xl font-semibold mb-4 text-navy">
+              Nossos Valores
+            </h2>
+            <SectionDivider lightBg={true} className="mt-2" />
+          </div>
+        </div>
+
+        {/* The 3 columns glued together spanning the entire session width */}
+        <div className="w-full border-t border-b border-gold/25 grid grid-cols-1 md:grid-cols-3 gap-0">
+          
+          {/* Valor 1: Resultado */}
+          <div className="relative group overflow-hidden border-b md:border-b-0 md:border-r border-gold/25 p-10 md:p-14 min-h-[340px] md:min-h-[400px] flex flex-col justify-between transition-colors duration-300 hover:bg-gold/[0.02]">
+            {/* Transparent background image */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.11] filter grayscale hover:scale-105 transition-transform duration-[2000ms] ease-out pointer-events-none"
+              style={{ backgroundImage: `url('https://i.ibb.co/99xsWww2/pexels-rdne-7948055.jpg')` }}
+            />
+            {/* Subtle visual depth overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-cream/95 via-transparent to-transparent pointer-events-none" />
+            
+            <div className="relative z-10">
+              <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-6 shadow-sm border border-gold/10">
+                <BarChart3 className="w-5 h-5" />
+              </div>
+              <h3 className="font-serif text-2xl font-bold text-navy tracking-wide mb-4">Resultado</h3>
+              <p className="font-sans text-sm sm:text-base text-navy/85 leading-relaxed font-light">
+                Tudo o que fazemos é medido. Se não gera posicionamento de autoridade e resultados de crescimento tangíveis, não faz sentido para o negócio.
+              </p>
+            </div>
+            
+            {/* Premium decoration bar */}
+            <div className="relative z-10 w-8 h-[1px] bg-gold/50 group-hover:w-16 transition-all duration-500 mt-6" />
+          </div>
+
+          {/* Valor 2: Transparência */}
+          <div className="relative group overflow-hidden border-b md:border-b-0 md:border-r border-gold/25 p-10 md:p-14 min-h-[340px] md:min-h-[400px] flex flex-col justify-between transition-colors duration-300 hover:bg-gold/[0.02]">
+            {/* Transparent background image */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.11] filter grayscale hover:scale-105 transition-transform duration-[2000ms] ease-out pointer-events-none"
+              style={{ backgroundImage: `url('https://i.ibb.co/23b9nh5m/pexels-mart-production-7644016.jpg')` }}
+            />
+            {/* Subtle visual depth overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-cream/95 via-transparent to-transparent pointer-events-none" />
+            
+            <div className="relative z-10">
+              <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-6 shadow-sm border border-gold/10">
+                <Eye className="w-5 h-5" />
+              </div>
+              <h3 className="font-serif text-2xl font-bold text-navy tracking-wide mb-4">Transparência</h3>
+              <p className="font-sans text-sm sm:text-base text-navy/85 leading-relaxed font-light">
+                Você acompanha com clareza todo o posicionamento digital e o retorno real que os anúncios de tráfego trazem para o seu negócio.
+              </p>
+            </div>
+            
+            {/* Premium decoration bar */}
+            <div className="relative z-10 w-8 h-[1px] bg-gold/50 group-hover:w-16 transition-all duration-500 mt-6" />
+          </div>
+
+          {/* Valor 3: Tecnologia */}
+          <div className="relative group overflow-hidden p-10 md:p-14 min-h-[340px] md:min-h-[400px] flex flex-col justify-between transition-colors duration-300 hover:bg-gold/[0.02]">
+            {/* Transparent background image */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.11] filter grayscale hover:scale-105 transition-transform duration-[2000ms] ease-out pointer-events-none"
+              style={{ backgroundImage: `url('https://i.ibb.co/845rT8qJ/pexels-bibekghosh-14553720.jpg')` }}
+            />
+            {/* Subtle visual depth overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-cream/95 via-transparent to-transparent pointer-events-none" />
+            
+            <div className="relative z-10">
+              <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-6 shadow-sm border border-gold/10">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <h3 className="font-serif text-2xl font-bold text-navy tracking-wide mb-4">Tecnologia</h3>
+              <p className="font-sans text-sm sm:text-base text-navy/85 leading-relaxed font-light">
+                Dominamos as ferramentas técnicas avançadas e linguagens que fazem toda a diferença: sites ultra-velozes, estruturas estáveis e conteúdo premium.
+              </p>
+            </div>
+            
+            {/* Premium decoration bar */}
+            <div className="relative z-10 w-8 h-[1px] bg-gold/50 group-hover:w-16 transition-all duration-500 mt-6" />
+          </div>
+
         </div>
       </section>
 

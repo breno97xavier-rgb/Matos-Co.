@@ -8,6 +8,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Cases from './pages/Cases';
 import { PageId } from './types';
+import CookieConsent from './components/CookieConsent';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageId>('home');
@@ -59,6 +60,9 @@ export default function App() {
 
       {/* Floating fast-access WhatsApp button */}
       <WhatsAppButton />
+
+      {/* LGPD Cookie Consent Banner */}
+      <CookieConsent />
 
       {/* Universal footer */}
       <Footer setCurrentPage={setCurrentPage} />
